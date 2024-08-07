@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Company>SENAI</Company>
+    <Version>1.0.0</Version>
+    <Authors>Diogo Botton, Saulo Santos</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/istic-sp/Stick.Core</RepositoryUrl>
+    <Title>Stick.Core</Title>
+    <Description>O pacote Stick.Core foi desenvolvido pelo Instituto SENAI de Tecnologia da Informação e Comunicação (ISTIC) para fornecer uma base padronizada e ferramentas essenciais para o desenvolvimento de aplicações em C#. Este pacote inclui funcionalidades de paginação e padrões de resposta que facilitam a criação de APIs.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.7.0" />
+  </ItemGroup>
+
+</Project>
