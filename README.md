@@ -1,10 +1,10 @@
-# Stick.Core
+# ISTIC.Responses
 
-O pacote Stick.Core foi desenvolvido pelo Instituto SENAI de Tecnologia da Informação e Comunicação (ISTIC) para fornecer uma base padronizada e ferramentas essenciais para o desenvolvimento de aplicações em C#. Este pacote inclui funcionalidades de paginação e padrões de resposta que facilitam a criação de APIs.
+O pacote ISTIC.Responses foi desenvolvido pelo Instituto SENAI de Tecnologia da Informação e Comunicação (ISTIC) para fornecer uma base padronizada e ferramentas essenciais para o desenvolvimento de aplicações em C#. Este pacote inclui funcionalidades de padrões de resposta que facilitam a padronização de retornos em endpoints de APIs.
 
 ## Como configurar?
 
-Para configurar o Stick.Core em seu projeto em C# .NET, é necessário adicionar algumas injeções de dependência na StartUp.cs ou Program.cs do seu projeto.
+Para configurar o ISTIC.Responses em seu projeto em C# .NET, é necessário adicionar algumas injeções de dependência na StartUp.cs ou Program.cs do seu projeto.
 
 Primeiramente precisamos configurar alguns filtros e conversores json no método ***AddControllers***
 
@@ -35,7 +35,7 @@ services.AddSwaggerGen(options =>
 
 ## Exemplos de uso:
 
-Para utilizar os padrões de retorno da Stick.Core é necessário utilizar o ***BaseResponse<T>*** para apresentar resultados diversos. Esta classe foi preparada para aceitar um tipo genérico.
+Para utilizar os padrões de retorno da ISTIC.Responses é necessário utilizar o ***BaseResponse<T>*** para apresentar resultados diversos. Esta classe foi preparada para aceitar um tipo genérico.
 Por exemplo, o retorno de um método do tipo POST retornará uma resposta com o Id do objeto criado no banco de dados, então poderíamos criar uma classe que terá uma propriedade do tipo GUID ou Long chamada *RegisterResult*:
 
 ```csharp
