@@ -1,7 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.Json;
+using ISTIC.Responses.Core;
 
-namespace Stick.Core.Responses.Converters;
+namespace ISTIC.Responses.Converters;
 
 public class ResponseJsonConverterFactory : JsonConverterFactory
 {

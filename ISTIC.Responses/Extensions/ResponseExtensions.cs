@@ -1,7 +1,7 @@
-﻿using Stick.Core.Responses;
-using System.Net;
+﻿using System.Net;
+using ISTIC.Responses.Core;
 
-namespace Stick.Core.Responses.Extensions;
+namespace ISTIC.Responses.Extensions;
 
 public static class ResponseExtensions
 {

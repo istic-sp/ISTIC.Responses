@@ -1,4 +1,4 @@
-﻿namespace Stick.Core.Responses;
+﻿namespace ISTIC.Responses.Core;
 
 public class ErrorResponse
 {

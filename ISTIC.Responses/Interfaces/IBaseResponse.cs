@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Stick.Core.Responses.Interfaces;
+namespace ISTIC.Responses.Interfaces;
 
 public interface IBaseResponse
 {

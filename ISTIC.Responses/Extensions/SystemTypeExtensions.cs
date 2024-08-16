@@ -1,4 +1,4 @@
-﻿namespace Stick.Core.Responses.Extensions
+﻿namespace ISTIC.Responses.Extensions
 {
     public static class SystemTypeExtensions
     {

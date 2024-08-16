@@ -1,7 +1,7 @@
 ﻿using System.Net;
-using Stick.Core.Responses.Interfaces;
+using ISTIC.Responses.Interfaces;
 
-namespace Stick.Core.Responses;
+namespace ISTIC.Responses.Core;
 
 public class Response : IBaseResponse
 {

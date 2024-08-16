@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
-using Stick.Core.Responses.Interfaces;
+using ISTIC.Responses.Interfaces;
 
-namespace Stick.Core.Responses.Filters;
+namespace ISTIC.Responses.Filters;
 
 public class CustomActionFilter : IActionFilter
 {

@@ -1,9 +1,9 @@
-﻿using Microsoft.OpenApi.Models;
-using Stick.Core.Responses;
-using Stick.Core.Responses.Extensions;
+﻿using ISTIC.Responses.Core;
+using ISTIC.Responses.Extensions;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Stick.Core.Responses.Swagger;
+namespace ISTIC.Responses.Swagger;
 
 public class BaseResponseOperationFilter : IOperationFilter
 {
