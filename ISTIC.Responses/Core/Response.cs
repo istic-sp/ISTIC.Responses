@@ -3,19 +3,19 @@ using ISTIC.Responses.Interfaces;
 
 namespace ISTIC.Responses.Core;
 
-public class Response : IBaseResponse
+public class Response : IResponse
 {
-    public ErrorResponse Error { get; set; }
+    public Error Error { get; set; }
     public HttpStatusCode StatusCode { get; set; }
 
     public static Response Success(HttpStatusCode statusCode = HttpStatusCode.OK) => new() { StatusCode = statusCode };
-    public static Response ErrorHandle(string name, string description, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => Throw(new ErrorResponse(name, description), statusCode);
+    public static Response ErrorHandle(string name, string description, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => Throw(new Error(name, description), statusCode);
 
-    private static Response Throw(ErrorResponse errorResponse, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => new()
+    private static Response Throw(Error errorResponse, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => new()
     {
         Error = errorResponse,
         StatusCode = statusCode
     };
 
-    public static implicit operator Response(ErrorResponse errorResponse) => Throw(errorResponse);
+    public static implicit operator Response(Error errorResponse) => Throw(errorResponse);
 }

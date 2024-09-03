@@ -2,7 +2,7 @@
 
 namespace ISTIC.Responses.Interfaces;
 
-public interface IBaseResponse
+public interface IResponse
 {
     public HttpStatusCode StatusCode { get; set; }
 }

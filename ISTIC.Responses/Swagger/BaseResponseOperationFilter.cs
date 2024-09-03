@@ -15,7 +15,7 @@ public class BaseResponseOperationFilter : IOperationFilter
             returnType = returnType.GenericTypeArguments[0];
         }
 
-        if (returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(BaseResponse<>))
+        if (returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(ResponseOf<>))
         {
             var successReturnType = returnType.GenericTypeArguments[0];
 
@@ -40,7 +40,7 @@ public class BaseResponseOperationFilter : IOperationFilter
                 {
                     Reference = new OpenApiReference
                     {
-                        Id = typeof(ErrorResponse).GetSchemaId(),
+                        Id = typeof(Error).GetSchemaId(),
                         Type = ReferenceType.Schema
                     }
                 }

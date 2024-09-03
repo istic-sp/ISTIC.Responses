@@ -13,7 +13,7 @@ public class CustomActionFilter : IActionFilter
     public void OnActionExecuted(ActionExecutedContext context)
     {
         if (context.Result is ObjectResult objectResult)
-            if (objectResult.Value is IBaseResponse baseResponse)
-                context.HttpContext.Response.StatusCode = (int)baseResponse.StatusCode;
+            if (objectResult.Value is IResponse response)
+                context.HttpContext.Response.StatusCode = (int)response.StatusCode;
     }
 }
