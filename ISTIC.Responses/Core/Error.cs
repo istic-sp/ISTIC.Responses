@@ -4,28 +4,44 @@ public class Error
 {
     public string Name { get; set; }
     public string Description { get; set; }
-    public Dictionary<string, List<string>> FieldErrors { get; set; }
+    public DictionaryError FieldErrors { get; set; }
 
     public Error(string name, string description, Dictionary<string, List<string>> fieldErrors = null)
     {
         Name = name;
         Description = description;
-        FieldErrors = fieldErrors ?? new Dictionary<string, List<string>>();
+        FieldErrors = new DictionaryError(fieldErrors);
+    }
+}
+
+public class DictionaryError : Dictionary<string, List<string>>
+{
+    public DictionaryError(Dictionary<string, List<string>> dictionary = null)
+    {
+        if (dictionary != null)
+            foreach (var item in dictionary)
+                Add(item.Key, item.Value);
     }
 
-    public void AddFieldError(string fieldName, string errorMessage)
+    public void Add(string fieldName, string errorMessage)
     {
-        if (FieldErrors.ContainsKey(fieldName))
-            FieldErrors[fieldName].Add(errorMessage);
+        if (ContainsKey(fieldName))
+            this[fieldName].Add(errorMessage);
         else
-            FieldErrors[fieldName] = new List<string> { errorMessage };
+            this[fieldName] = new List<string> { errorMessage };
     }
 
-    public void AddFieldError(string fieldName, List<string> errorMessages)
+    public void Add(string fieldName, List<string> errorMessage)
     {
-        if (FieldErrors.ContainsKey(fieldName))
-            FieldErrors[fieldName].AddRange(errorMessages);
+        if (ContainsKey(fieldName))
+            this[fieldName].AddRange(errorMessage);
         else
-            FieldErrors[fieldName] = new List<string>(errorMessages);
+            this[fieldName] = new List<string>(errorMessage);
+    }
+
+    public void Add(Dictionary<string, List<string>> fieldErrors)
+    {
+        foreach (var item in fieldErrors)
+            Add(item.Key, item.Value);
     }
 }
