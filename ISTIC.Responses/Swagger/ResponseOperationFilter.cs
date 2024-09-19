@@ -5,7 +5,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ISTIC.Responses.Swagger;
 
-public class BaseResponseOperationFilter : IOperationFilter
+public class ResponseOperationFilter : IOperationFilter
 {
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
