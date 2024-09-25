@@ -18,7 +18,7 @@ Primeiramente precisamos configurar alguns filtros e conversores json no método
     .AddJsonOptions(options =>
     {
         // Adicionando conversores json
-        options.JsonSerializerOptions.Converters.Add(new BaseResponseJsonConverterFactory());
+        options.JsonSerializerOptions.Converters.Add(new ResponseOfJsonConverterFactory());
         options.JsonSerializerOptions.Converters.Add(new ResponseJsonConverterFactory());
     });
 ```
@@ -29,13 +29,13 @@ Para documentar o retorno das respostas tanto de sucesso quanto de erro é neces
 services.AddSwaggerGen(options =>
 {
     options.CustomSchemaIds(d => d.GetSchemaId()); // Identifica os schemas genéricos e adiciona-os
-    options.OperationFilter<BaseResponseOperationFilter>(); // Adicionando filtros para os tipos de resposta
+    options.OperationFilter<ResponseOperationFilter>(); // Adicionando filtros para os tipos de resposta
 });
 ```
 
 ## Exemplos de uso:
 
-Para utilizar os padrões de retorno da ISTIC.Responses é necessário utilizar o ***BaseResponse<T>*** para apresentar resultados diversos. Esta classe foi preparada para aceitar um tipo genérico.
+Para utilizar os padrões de retorno da ISTIC.Responses é necessário utilizar o ***ResponseOf<T>*** para apresentar resultados diversos. Esta classe foi preparada para aceitar um tipo genérico.
 Por exemplo, o retorno de um método do tipo POST retornará uma resposta com o Id do objeto criado no banco de dados, então poderíamos criar uma classe que terá uma propriedade do tipo GUID ou Long chamada *RegisterResult*:
 
 ```csharp
@@ -49,7 +49,7 @@ E no controller poderemos especificar o retorno do nosso endpoint da seguinte fo
 
 ```csharp
 [HttpPost]
-public async Task<BaseResponse<RegisterResult<Guid>>> Add(Model request)
+public async Task<ResponseOf<RegisterResult<Guid>>> Add(Model request)
 {
     // Código que cria um objeto no banco de dados e retorna
 }
@@ -63,7 +63,7 @@ Caso houver um erro, será exibido o seguinte retorno padrão:
 
 ![swagger2 img](/readme-imgs/swagger_2.png)
 
-Explicação: A classe ***BaseResponse<T>*** recebe como paramêtro o tipo ***RegisterResult<Guid>***
+Explicação: A classe ***ResponseOf<T>*** recebe como paramêtro o tipo ***RegisterResult<Guid>***
 
 Caso exista algum endpoint que não julgue necessário retornar um objeto de resposta, a classe ***Response*** dará uma resposta de sucesso vazia, porém caso houver erros na execução da aplicação, retornará um objeto de erro padrão igual ao que contém na classe de retorno anterior.
 
@@ -78,7 +78,7 @@ public async Task<Response> Delete(Guid Id)
 ```
 
 ***IMPORTANTE***
-Para que não haja erros na documentação dos retornos dos endpoints no Swagger é ideal que sempre utilize as classes ***BaseResponse<T>*** ou ***Response*** como bases de respostas para todos os endpoints da sua aplicação, do contrário o filtro para especificar cada tipo de resposta não funcionará corretamente.
+Para que não haja erros na documentação dos retornos dos endpoints no Swagger é ideal que sempre utilize as classes ***ResponseOf<T>*** ou ***Response*** como bases de respostas para todos os endpoints da sua aplicação, do contrário o filtro para especificar cada tipo de resposta não funcionará corretamente.
 
 ### Retornar um status code diferente do padrão (200 ou 400):
 
@@ -86,7 +86,7 @@ Também é possível especificar o StatusCode do retorno da requisição para re
 
 Para retornos de erro:
 ```csharp
-public async Task<BaseResponse<RegisterResult<Guid>>> Add(Model request)
+public async Task<ResponseOf<RegisterResult<Guid>>> Add(Model request)
 {
     // O método aceita um enum Http Status Code do erro
     return new ErrorResponse("Error", "Houve algum erro na realização da operação.")
@@ -94,9 +94,9 @@ public async Task<BaseResponse<RegisterResult<Guid>>> Add(Model request)
 }
 ```
 
-Para retornos de sucesso, podemos utilizar um dos exemplos anteriores, onde a resposta de sucesso de um método chamado Add retorna uma BaseResponse do tipo RegisterResult<Guid>
+Para retornos de sucesso, podemos utilizar um dos exemplos anteriores, onde a resposta de sucesso de um método chamado Add retorna uma ResponseOf do tipo RegisterResult<Guid>
 ```csharp
-public async Task<BaseResponse<RegisterResult<Guid>>> Add(Model request)
+public async Task<ResponseOf<RegisterResult<Guid>>> Add(Model request)
 {
     // O método deve vir acompanhado de um enum Http Status Code
     return new RegisterResult<Guid>
