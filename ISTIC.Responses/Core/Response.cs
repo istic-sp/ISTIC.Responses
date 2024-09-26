@@ -11,11 +11,11 @@ public class Response : IResponse
     public static Response Success(HttpStatusCode statusCode = HttpStatusCode.OK) => new() { StatusCode = statusCode };
     public static Response ErrorHandle(string name, string description, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => Throw(new Error(name, description), statusCode);
 
-    private static Response Throw(Error errorResponse, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => new()
+    private static Response Throw(Error error, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => new()
     {
-        Error = errorResponse,
-        StatusCode = statusCode
+        Error = error,
+        StatusCode = error.GetStatusCode().HasValue ? error.GetStatusCode().Value : statusCode
     };
 
-    public static implicit operator Response(Error errorResponse) => Throw(errorResponse);
+    public static implicit operator Response(Error error) => Throw(error);
 }
