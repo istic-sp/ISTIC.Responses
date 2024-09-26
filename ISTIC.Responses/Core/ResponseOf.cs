@@ -20,11 +20,11 @@ public class ResponseOf<T> : IResponse
     public ResponseOf(Error error, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
     {
         Error = error;
-        StatusCode = statusCode;
+        StatusCode = error.GetStatusCode().HasValue ? error.GetStatusCode().Value : statusCode;
     }
 
 
     public static implicit operator ResponseOf<T>(T data) => new ResponseOf<T>(data);
 
-    public static implicit operator ResponseOf<T>(Error errorResponse) => new ResponseOf<T>(errorResponse);
+    public static implicit operator ResponseOf<T>(Error error) => new ResponseOf<T>(error);
 }
